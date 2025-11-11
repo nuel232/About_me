@@ -75,7 +75,7 @@ class _ContactSectionState extends State<ContactSection> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
@@ -87,15 +87,15 @@ class _ContactSectionState extends State<ContactSection> {
             horizontal: isMobile ? 16 : (isTablet ? 32 : 64),
             vertical: 80,
           ),
-          color: isLightMode ? Colors.grey[900] : Colors.grey[50],
+          color: isDarkMode ? Colors.grey[900] : Colors.grey[50],
           child: Column(
             children: [
-              _buildHeader(isLightMode),
+              _buildHeader(isDarkMode),
               const SizedBox(height: 64),
               if (isMobile)
-                _buildMobileLayout(isLightMode)
+                _buildMobileLayout(isDarkMode)
               else
-                _buildDesktopLayout(isLightMode, isTablet),
+                _buildDesktopLayout(isDarkMode, isTablet),
             ],
           ),
         );
@@ -103,7 +103,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildHeader(bool isLightMode) {
+  Widget _buildHeader(bool isDarkMode) {
     return Column(
       children: [
         Text(
@@ -111,7 +111,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 16),
@@ -120,43 +120,43 @@ class _ContactSectionState extends State<ContactSection> {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
           ),
         ),
       ],
     );
   }
 
-  Widget _buildDesktopLayout(bool isLightMode, bool isTablet) {
+  Widget _buildDesktopLayout(bool isDarkMode, bool isTablet) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _buildContactForm(isLightMode)),
+        Expanded(child: _buildContactForm(isDarkMode)),
         const SizedBox(width: 64),
-        Expanded(child: _buildContactInfo(isLightMode)),
+        Expanded(child: _buildContactInfo(isDarkMode)),
       ],
     );
   }
 
-  Widget _buildMobileLayout(bool isLightMode) {
+  Widget _buildMobileLayout(bool isDarkMode) {
     return Column(
       children: [
-        _buildContactForm(isLightMode),
+        _buildContactForm(isDarkMode),
         const SizedBox(height: 48),
-        _buildContactInfo(isLightMode),
+        _buildContactInfo(isDarkMode),
       ],
     );
   }
 
-  Widget _buildContactForm(bool isLightMode) {
+  Widget _buildContactForm(bool isDarkMode) {
     if (_isSubmitted) {
-      return _buildSuccessMessage(isLightMode);
+      return _buildSuccessMessage(isDarkMode);
     }
 
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: isLightMode ? Colors.grey[800] : Colors.white,
+        color: isDarkMode ? Colors.grey[800] : Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -171,11 +171,11 @@ class _ContactSectionState extends State<ContactSection> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildStepIndicator(isLightMode),
+            _buildStepIndicator(isDarkMode),
             const SizedBox(height: 32),
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
-              child: _buildStepContent(isLightMode),
+              child: _buildStepContent(isDarkMode),
             ),
           ],
         ),
@@ -183,7 +183,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildStepIndicator(bool isLightMode) {
+  Widget _buildStepIndicator(bool isDarkMode) {
     return Row(
       children: [
         Expanded(
@@ -199,7 +199,7 @@ class _ContactSectionState extends State<ContactSection> {
                   decoration: BoxDecoration(
                     color: isCompleted || isActive
                         ? const Color(0xFF3B82F6)
-                        : (isLightMode ? Colors.grey[700] : Colors.grey[300]),
+                        : (isDarkMode ? Colors.grey[700] : Colors.grey[300]),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -212,27 +212,27 @@ class _ContactSectionState extends State<ContactSection> {
           'Step ${_currentStep + 1} of 3',
           style: TextStyle(
             fontSize: 14,
-            color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
           ),
         ),
       ],
     );
   }
 
-  Widget _buildStepContent(bool isLightMode) {
+  Widget _buildStepContent(bool isDarkMode) {
     switch (_currentStep) {
       case 0:
-        return _buildStep1(isLightMode);
+        return _buildStep1(isDarkMode);
       case 1:
-        return _buildStep2(isLightMode);
+        return _buildStep2(isDarkMode);
       case 2:
-        return _buildStep3(isLightMode);
+        return _buildStep3(isDarkMode);
       default:
         return const SizedBox();
     }
   }
 
-  Widget _buildStep1(bool isLightMode) {
+  Widget _buildStep1(bool isDarkMode) {
     return Column(
       key: const ValueKey(0),
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -242,7 +242,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 24),
@@ -253,7 +253,7 @@ class _ContactSectionState extends State<ContactSection> {
             hintText: 'Enter your name',
             border: const OutlineInputBorder(),
             filled: true,
-            fillColor: isLightMode ? Colors.grey[900] : Colors.grey[50],
+            fillColor: isDarkMode ? Colors.grey[900] : Colors.grey[50],
           ),
         ),
         const SizedBox(height: 16),
@@ -264,7 +264,7 @@ class _ContactSectionState extends State<ContactSection> {
             hintText: 'Enter your email',
             border: const OutlineInputBorder(),
             filled: true,
-            fillColor: isLightMode ? Colors.grey[900] : Colors.grey[50],
+            fillColor: isDarkMode ? Colors.grey[900] : Colors.grey[50],
           ),
         ),
         const SizedBox(height: 24),
@@ -284,7 +284,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildStep2(bool isLightMode) {
+  Widget _buildStep2(bool isDarkMode) {
     return Column(
       key: const ValueKey(1),
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,7 +294,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 24),
@@ -305,7 +305,7 @@ class _ContactSectionState extends State<ContactSection> {
             hintText: 'Describe your project or collaboration idea',
             border: const OutlineInputBorder(),
             filled: true,
-            fillColor: isLightMode ? Colors.grey[900] : Colors.grey[50],
+            fillColor: isDarkMode ? Colors.grey[900] : Colors.grey[50],
           ),
           maxLines: 5,
         ),
@@ -318,7 +318,7 @@ class _ContactSectionState extends State<ContactSection> {
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   side: BorderSide(
-                    color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+                    color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
                   ),
                 ),
                 child: const Text('Back'),
@@ -342,7 +342,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildStep3(bool isLightMode) {
+  Widget _buildStep3(bool isDarkMode) {
     return Column(
       key: const ValueKey(2),
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -352,14 +352,14 @@ class _ContactSectionState extends State<ContactSection> {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 24),
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: isLightMode ? Colors.grey[900] : Colors.grey[100],
+            color: isDarkMode ? Colors.grey[900] : Colors.grey[100],
             borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
@@ -375,7 +375,7 @@ class _ContactSectionState extends State<ContactSection> {
                           'Name',
                           style: TextStyle(
                             fontSize: 12,
-                            color: isLightMode
+                            color: isDarkMode
                                 ? Colors.grey[500]
                                 : Colors.grey[600],
                           ),
@@ -386,7 +386,7 @@ class _ContactSectionState extends State<ContactSection> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: isLightMode ? Colors.white : Colors.black,
+                            color: isDarkMode ? Colors.white : Colors.black,
                           ),
                         ),
                       ],
@@ -401,7 +401,7 @@ class _ContactSectionState extends State<ContactSection> {
                           'Email',
                           style: TextStyle(
                             fontSize: 12,
-                            color: isLightMode
+                            color: isDarkMode
                                 ? Colors.grey[500]
                                 : Colors.grey[600],
                           ),
@@ -412,7 +412,7 @@ class _ContactSectionState extends State<ContactSection> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: isLightMode ? Colors.white : Colors.black,
+                            color: isDarkMode ? Colors.white : Colors.black,
                           ),
                         ),
                       ],
@@ -425,7 +425,7 @@ class _ContactSectionState extends State<ContactSection> {
                 'Message',
                 style: TextStyle(
                   fontSize: 12,
-                  color: isLightMode ? Colors.grey[500] : Colors.grey[600],
+                  color: isDarkMode ? Colors.grey[500] : Colors.grey[600],
                 ),
               ),
               const SizedBox(height: 4),
@@ -434,7 +434,7 @@ class _ContactSectionState extends State<ContactSection> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: isLightMode ? Colors.white : Colors.black,
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
             ],
@@ -449,7 +449,7 @@ class _ContactSectionState extends State<ContactSection> {
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   side: BorderSide(
-                    color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+                    color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
                   ),
                 ),
                 child: const Text('Back'),
@@ -489,11 +489,11 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildSuccessMessage(bool isLightMode) {
+  Widget _buildSuccessMessage(bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.all(48),
       decoration: BoxDecoration(
-        color: isLightMode ? Colors.grey[800] : Colors.white,
+        color: isDarkMode ? Colors.grey[800] : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -517,7 +517,7 @@ class _ContactSectionState extends State<ContactSection> {
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: isLightMode ? Colors.white : Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
           ),
           const SizedBox(height: 12),
@@ -526,7 +526,7 @@ class _ContactSectionState extends State<ContactSection> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,
-              color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+              color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
             ),
           ),
           const SizedBox(height: 32),
@@ -544,45 +544,45 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildContactInfo(bool isLightMode) {
+  Widget _buildContactInfo(bool isDarkMode) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildInfoSection('Contact Information', isLightMode, [
+        _buildInfoSection('Contact Information', isDarkMode, [
           _buildInfoItem(
             Icons.email,
             'Email',
             'nwankwoala3@gmail.com',
             'mailto:nwankwoala3@gmail.com',
-            isLightMode,
+            isDarkMode,
           ),
         ]),
         const SizedBox(height: 32),
-        _buildInfoSection('Areas of Expertise', isLightMode, [
+        _buildInfoSection('Areas of Expertise', isDarkMode, [
           _buildExpertiseCard(
             'Web Development',
             'Front-end development with modern frameworks',
-            isLightMode,
+            isDarkMode,
           ),
           _buildExpertiseCard(
             'Blockchain',
             'DApp development and smart contracts',
-            isLightMode,
+            isDarkMode,
           ),
           _buildExpertiseCard(
             'UI/UX Design',
             'Responsive interfaces with modern patterns',
-            isLightMode,
+            isDarkMode,
           ),
           _buildExpertiseCard(
             'DevOps',
             'AWS deployment and CI/CD pipelines',
-            isLightMode,
+            isDarkMode,
           ),
         ]),
         const SizedBox(height: 32),
-        _buildInfoSection('Connect With Me', isLightMode, [
-          _buildSocialLinks(isLightMode),
+        _buildInfoSection('Connect With Me', isDarkMode, [
+          _buildSocialLinks(isDarkMode),
         ]),
       ],
     );
@@ -590,7 +590,7 @@ class _ContactSectionState extends State<ContactSection> {
 
   Widget _buildInfoSection(
     String title,
-    bool isLightMode,
+    bool isDarkMode,
     List<Widget> children,
   ) {
     return Column(
@@ -601,7 +601,7 @@ class _ContactSectionState extends State<ContactSection> {
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 16),
@@ -615,7 +615,7 @@ class _ContactSectionState extends State<ContactSection> {
     String label,
     String value,
     String url,
-    bool isLightMode,
+    bool isDarkMode,
   ) {
     return InkWell(
       onTap: () async {
@@ -627,10 +627,10 @@ class _ContactSectionState extends State<ContactSection> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isLightMode ? Colors.grey[800] : Colors.white,
+          color: isDarkMode ? Colors.grey[800] : Colors.white,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: isLightMode ? Colors.grey[700]! : Colors.grey[200]!,
+            color: isDarkMode ? Colors.grey[700]! : Colors.grey[200]!,
           ),
         ),
         child: Row(
@@ -652,7 +652,7 @@ class _ContactSectionState extends State<ContactSection> {
                     label,
                     style: TextStyle(
                       fontSize: 12,
-                      color: isLightMode ? Colors.grey[500] : Colors.grey[600],
+                      color: isDarkMode ? Colors.grey[500] : Colors.grey[600],
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -675,16 +675,16 @@ class _ContactSectionState extends State<ContactSection> {
   Widget _buildExpertiseCard(
     String title,
     String description,
-    bool isLightMode,
+    bool isDarkMode,
   ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isLightMode ? Colors.grey[800] : Colors.white,
+        color: isDarkMode ? Colors.grey[800] : Colors.white,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[200]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[200]!,
         ),
       ),
       child: Column(
@@ -695,7 +695,7 @@ class _ContactSectionState extends State<ContactSection> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isLightMode ? Colors.white : Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
           ),
           const SizedBox(height: 4),
@@ -703,7 +703,7 @@ class _ContactSectionState extends State<ContactSection> {
             description,
             style: TextStyle(
               fontSize: 14,
-              color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+              color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
             ),
           ),
         ],
@@ -711,7 +711,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildSocialLinks(bool isLightMode) {
+  Widget _buildSocialLinks(bool isDarkMode) {
     final socials = [
       {'icon': '👨‍💻', 'label': 'GitHub', 'url': 'https://github.com/nuel232'},
       {
@@ -745,10 +745,10 @@ class _ContactSectionState extends State<ContactSection> {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: isLightMode ? Colors.grey[800] : Colors.white,
+              color: isDarkMode ? Colors.grey[800] : Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isLightMode ? Colors.grey[700]! : Colors.grey[200]!,
+                color: isDarkMode ? Colors.grey[700]! : Colors.grey[200]!,
               ),
             ),
             child: Column(
@@ -757,7 +757,7 @@ class _ContactSectionState extends State<ContactSection> {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: isLightMode ? Colors.grey[700] : Colors.grey[100],
+                    color: isDarkMode ? Colors.grey[700] : Colors.grey[100],
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -773,7 +773,7 @@ class _ContactSectionState extends State<ContactSection> {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: isLightMode ? Colors.white : Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               ],

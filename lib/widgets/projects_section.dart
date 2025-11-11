@@ -9,7 +9,7 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
@@ -21,17 +21,17 @@ class ProjectsSection extends StatelessWidget {
             horizontal: isMobile ? 16 : (isTablet ? 32 : 64),
             vertical: 80,
           ),
-          color: isLightMode ? Colors.grey[900] : Colors.grey[50],
+          color: isDarkMode ? Colors.grey[900] : Colors.grey[50],
           child: Column(
             children: [
-              _buildHeader(isLightMode),
+              _buildHeader(isDarkMode),
               const SizedBox(height: 64),
               if (isMobile)
-                _buildMobileGrid(isLightMode)
+                _buildMobileGrid(isDarkMode)
               else if (isTablet)
-                _buildTabletGrid(isLightMode)
+                _buildTabletGrid(isDarkMode)
               else
-                _buildDesktopGrid(isLightMode),
+                _buildDesktopGrid(isDarkMode),
             ],
           ),
         );
@@ -39,7 +39,7 @@ class ProjectsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(bool isLightMode) {
+  Widget _buildHeader(bool isDarkMode) {
     return Column(
       children: [
         Text(
@@ -47,7 +47,7 @@ class ProjectsSection extends StatelessWidget {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 16),
@@ -56,14 +56,14 @@ class ProjectsSection extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
           ),
         ),
       ],
     );
   }
 
-  Widget _buildDesktopGrid(bool isLightMode) {
+  Widget _buildDesktopGrid(bool isDarkMode) {
     return AnimationLimiter(
       child: GridView.count(
         shrinkWrap: true,
@@ -85,7 +85,7 @@ class ProjectsSection extends StatelessWidget {
                   'A secure and transparent voting platform built on Ethereum blockchain that enables tamper-proof voting records, remote voting, and maintains voter anonymity.',
               icon: Icons.how_to_vote_rounded,
               gridHeight: 2,
-              isLightMode: isLightMode,
+              isDarkMode: isDarkMode,
             ),
             ProjectCard(
               title: 'Blockchain Certificate Authentication',
@@ -93,7 +93,7 @@ class ProjectsSection extends StatelessWidget {
                   'A decentralized application for storing and verifying academic certificates on the Ethereum blockchain with smart contracts and verification functionality.',
               icon: Icons.verified_rounded,
               gridHeight: 1,
-              isLightMode: isLightMode,
+              isDarkMode: isDarkMode,
             ),
             ProjectCard(
               title: 'Gemini AI Integration',
@@ -101,7 +101,7 @@ class ProjectsSection extends StatelessWidget {
                   'A web application that integrates Google\'s Gemini AI model to provide conversational AI capabilities with a React-based UI.',
               icon: Icons.psychology_rounded,
               gridHeight: 1,
-              isLightMode: isLightMode,
+              isDarkMode: isDarkMode,
             ),
             ProjectCard(
               title: 'Student Exeat Permission System',
@@ -109,7 +109,7 @@ class ProjectsSection extends StatelessWidget {
                   'A comprehensive MERN stack web application for Veritas University to manage student exeat permissions with a multi-stage approval workflow.',
               icon: Icons.school_rounded,
               gridHeight: 2,
-              isLightMode: isLightMode,
+              isDarkMode: isDarkMode,
             ),
             ProjectCard(
               title: 'Django Web Applications',
@@ -117,7 +117,7 @@ class ProjectsSection extends StatelessWidget {
                   'Multiple Django web applications including e-commerce platforms, weather applications, and API implementations using Django REST framework.',
               icon: Icons.code_rounded,
               gridHeight: 3,
-              isLightMode: isLightMode,
+              isDarkMode: isDarkMode,
             ),
           ],
         ),
@@ -125,7 +125,7 @@ class ProjectsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTabletGrid(bool isLightMode) {
+  Widget _buildTabletGrid(bool isDarkMode) {
     return AnimationLimiter(
       child: GridView.count(
         shrinkWrap: true,
@@ -134,12 +134,12 @@ class ProjectsSection extends StatelessWidget {
         mainAxisSpacing: 20,
         crossAxisSpacing: 20,
         childAspectRatio: 1.0,
-        children: _buildAllProjects(isLightMode),
+        children: _buildAllProjects(isDarkMode),
       ),
     );
   }
 
-  Widget _buildMobileGrid(bool isLightMode) {
+  Widget _buildMobileGrid(bool isDarkMode) {
     return AnimationLimiter(
       child: ListView(
         shrinkWrap: true,
@@ -150,48 +150,48 @@ class ProjectsSection extends StatelessWidget {
             verticalOffset: 50.0,
             child: FadeInAnimation(child: widget),
           ),
-          children: _buildAllProjects(isLightMode),
+          children: _buildAllProjects(isDarkMode),
         ),
       ),
     );
   }
 
-  List<Widget> _buildAllProjects(bool isLightMode) {
+  List<Widget> _buildAllProjects(bool isDarkMode) {
     return [
       ProjectCard(
         title: 'Decentralized Voting System',
         description:
             'A secure and transparent voting platform built on Ethereum blockchain.',
         icon: Icons.how_to_vote_rounded,
-        isLightMode: isLightMode,
+        isDarkMode: isDarkMode,
       ),
       ProjectCard(
         title: 'Blockchain Certificate Authentication',
         description:
             'A decentralized application for storing and verifying academic certificates.',
         icon: Icons.verified_rounded,
-        isLightMode: isLightMode,
+        isDarkMode: isDarkMode,
       ),
       ProjectCard(
         title: 'Student Exeat Permission System',
         description:
             'A comprehensive MERN stack web application for Veritas University.',
         icon: Icons.school_rounded,
-        isLightMode: isLightMode,
+        isDarkMode: isDarkMode,
       ),
       ProjectCard(
         title: 'Gemini AI Integration',
         description:
             'A web application that integrates Google\'s Gemini AI model.',
         icon: Icons.psychology_rounded,
-        isLightMode: isLightMode,
+        isDarkMode: isDarkMode,
       ),
       ProjectCard(
         title: 'Django Web Applications',
         description:
             'Multiple Django web applications including e-commerce platforms.',
         icon: Icons.code_rounded,
-        isLightMode: isLightMode,
+        isDarkMode: isDarkMode,
       ),
     ];
   }
@@ -202,7 +202,7 @@ class ProjectCard extends StatefulWidget {
   final String description;
   final IconData icon;
   final int gridHeight;
-  final bool isLightMode;
+  final bool isDarkMode;
 
   const ProjectCard({
     Key? key,
@@ -210,7 +210,7 @@ class ProjectCard extends StatefulWidget {
     required this.description,
     required this.icon,
     this.gridHeight = 1,
-    required this.isLightMode,
+    required this.isDarkMode,
   }) : super(key: key);
 
   @override
@@ -257,10 +257,10 @@ class _ProjectCardState extends State<ProjectCard>
         child: Container(
           margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
-            color: widget.isLightMode ? Colors.grey[800] : Colors.white,
+            color: widget.isDarkMode ? Colors.grey[800] : Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: widget.isLightMode ? Colors.grey[700]! : Colors.grey[200]!,
+              color: widget.isDarkMode ? Colors.grey[700]! : Colors.grey[200]!,
             ),
             boxShadow: [
               BoxShadow(
@@ -281,7 +281,7 @@ class _ProjectCardState extends State<ProjectCard>
                   child: Icon(
                     widget.icon,
                     size: 120,
-                    color: widget.isLightMode ? Colors.white : Colors.black,
+                    color: widget.isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               ),
@@ -314,7 +314,7 @@ class _ProjectCardState extends State<ProjectCard>
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: widget.isLightMode
+                            color: widget.isDarkMode
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -325,7 +325,7 @@ class _ProjectCardState extends State<ProjectCard>
                           style: TextStyle(
                             fontSize: 14,
                             height: 1.5,
-                            color: widget.isLightMode
+                            color: widget.isDarkMode
                                 ? Colors.grey[400]
                                 : Colors.grey[600],
                           ),

@@ -72,7 +72,7 @@ class _AboutSectionState extends State<AboutSection>
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
@@ -84,20 +84,20 @@ class _AboutSectionState extends State<AboutSection>
             horizontal: isMobile ? 16 : (isTablet ? 32 : 64),
             vertical: 80,
           ),
-          color: isLightMode ? Colors.black : Colors.white,
+          color: isDarkMode ? Colors.black : Colors.white,
           child: Column(
             children: [
-              _buildHeader(isLightMode),
+              _buildHeader(isDarkMode),
               const SizedBox(height: 64),
-              _buildAboutContent(isLightMode, isMobile, isTablet),
+              _buildAboutContent(isDarkMode, isMobile, isTablet),
               const SizedBox(height: 80),
-              _buildEducationSection(isLightMode, isMobile),
+              _buildEducationSection(isDarkMode, isMobile),
               const SizedBox(height: 80),
-              _buildExperienceSection(isLightMode, isMobile),
+              _buildExperienceSection(isDarkMode, isMobile),
               const SizedBox(height: 80),
-              _buildSkillsSection(isLightMode, isMobile),
+              _buildSkillsSection(isDarkMode, isMobile),
               const SizedBox(height: 80),
-              _buildServicesSection(isLightMode, isMobile),
+              _buildServicesSection(isDarkMode, isMobile),
             ],
           ),
         );
@@ -105,7 +105,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildHeader(bool isLightMode) {
+  Widget _buildHeader(bool isDarkMode) {
     return Column(
       children: [
         Text(
@@ -113,7 +113,7 @@ class _AboutSectionState extends State<AboutSection>
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 16),
@@ -122,14 +122,14 @@ class _AboutSectionState extends State<AboutSection>
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
           ),
         ),
       ],
     );
   }
 
-  Widget _buildAboutContent(bool isLightMode, bool isMobile, bool isTablet) {
+  Widget _buildAboutContent(bool isDarkMode, bool isMobile, bool isTablet) {
     return AnimationConfiguration.synchronized(
       duration: const Duration(milliseconds: 600),
       child: SlideAnimation(
@@ -138,17 +138,17 @@ class _AboutSectionState extends State<AboutSection>
           child: isMobile
               ? Column(
                   children: [
-                    _buildProfileImage(isLightMode),
+                    _buildProfileImage(isDarkMode),
                     const SizedBox(height: 32),
-                    _buildAboutText(isLightMode),
+                    _buildAboutText(isDarkMode),
                   ],
                 )
               : Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _buildProfileImage(isLightMode)),
+                    Expanded(child: _buildProfileImage(isDarkMode)),
                     const SizedBox(width: 48),
-                    Expanded(child: _buildAboutText(isLightMode)),
+                    Expanded(child: _buildAboutText(isDarkMode)),
                   ],
                 ),
         ),
@@ -156,12 +156,12 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildProfileImage(bool isLightMode) {
+  Widget _buildProfileImage(bool isDarkMode) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
         ),
         boxShadow: [
           BoxShadow(
@@ -184,16 +184,16 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildAboutText(bool isLightMode) {
+  Widget _buildAboutText(bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: isLightMode
+        color: isDarkMode
             ? Colors.grey[900]!.withOpacity(0.5)
             : Colors.grey[100]!.withOpacity(0.5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
         ),
       ),
       child: Column(
@@ -204,7 +204,7 @@ class _AboutSectionState extends State<AboutSection>
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: isLightMode ? Colors.white : Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
           ),
           const SizedBox(height: 16),
@@ -213,7 +213,7 @@ class _AboutSectionState extends State<AboutSection>
             style: TextStyle(
               fontSize: 16,
               height: 1.6,
-              color: isLightMode ? Colors.grey[300] : Colors.grey[700],
+              color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
             ),
           ),
           const SizedBox(height: 16),
@@ -222,7 +222,7 @@ class _AboutSectionState extends State<AboutSection>
             style: TextStyle(
               fontSize: 16,
               height: 1.6,
-              color: isLightMode ? Colors.grey[300] : Colors.grey[700],
+              color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
             ),
           ),
           const SizedBox(height: 24),
@@ -245,17 +245,17 @@ class _AboutSectionState extends State<AboutSection>
             ),
           ),
           const SizedBox(height: 24),
-          _buildContactInfo(isLightMode, Icons.email, 'nwankwoala3@Gmail.com'),
+          _buildContactInfo(isDarkMode, Icons.email, 'nwankwoala3@Gmail.com'),
           const SizedBox(height: 12),
-          _buildContactInfo(isLightMode, Icons.phone, '+234 915 641 4321'),
+          _buildContactInfo(isDarkMode, Icons.phone, '+234 915 641 4321'),
           const SizedBox(height: 12),
-          _buildContactInfo(isLightMode, Icons.location_on, 'Abuja, Nigeria'),
+          _buildContactInfo(isDarkMode, Icons.location_on, 'Abuja, Nigeria'),
         ],
       ),
     );
   }
 
-  Widget _buildContactInfo(bool isLightMode, IconData icon, String text) {
+  Widget _buildContactInfo(bool isDarkMode, IconData icon, String text) {
     return Row(
       children: [
         Container(
@@ -272,7 +272,7 @@ class _AboutSectionState extends State<AboutSection>
             text,
             style: TextStyle(
               fontSize: 14,
-              color: isLightMode ? Colors.grey[300] : Colors.grey[700],
+              color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
             ),
           ),
         ),
@@ -280,7 +280,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildEducationSection(bool isLightMode, bool isMobile) {
+  Widget _buildEducationSection(bool isDarkMode, bool isMobile) {
     final educationData = [
       {
         'degree': 'B.Sc. Computer Science',
@@ -309,7 +309,7 @@ class _AboutSectionState extends State<AboutSection>
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 32),
@@ -322,7 +322,7 @@ class _AboutSectionState extends State<AboutSection>
                 child: FadeInAnimation(child: widget),
               ),
               children: educationData
-                  .map((edu) => _buildEducationCard(edu, isLightMode))
+                  .map((edu) => _buildEducationCard(edu, isDarkMode))
                   .toList(),
             ),
           ),
@@ -331,17 +331,17 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildEducationCard(Map<String, String> edu, bool isLightMode) {
+  Widget _buildEducationCard(Map<String, String> edu, bool isDarkMode) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: isLightMode
+        color: isDarkMode
             ? Colors.grey[900]!.withOpacity(0.5)
             : Colors.grey[100]!.withOpacity(0.5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
         ),
       ),
       child: Row(
@@ -364,7 +364,7 @@ class _AboutSectionState extends State<AboutSection>
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: isLightMode ? Colors.white : Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -381,7 +381,7 @@ class _AboutSectionState extends State<AboutSection>
                   '${edu['location']!.isNotEmpty ? '${edu['location']} • ' : ''}${edu['period']}',
                   style: TextStyle(
                     fontSize: 14,
-                    color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+                    color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
                   ),
                 ),
               ],
@@ -392,7 +392,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildExperienceSection(bool isLightMode, bool isMobile) {
+  Widget _buildExperienceSection(bool isDarkMode, bool isMobile) {
     final experienceData = [
       {
         'position': 'Back-end Developer',
@@ -425,7 +425,7 @@ class _AboutSectionState extends State<AboutSection>
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 32),
@@ -438,7 +438,7 @@ class _AboutSectionState extends State<AboutSection>
                 child: FadeInAnimation(child: widget),
               ),
               children: experienceData
-                  .map((exp) => _buildExperienceCard(exp, isLightMode))
+                  .map((exp) => _buildExperienceCard(exp, isDarkMode))
                   .toList(),
             ),
           ),
@@ -447,17 +447,17 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildExperienceCard(Map<String, dynamic> exp, bool isLightMode) {
+  Widget _buildExperienceCard(Map<String, dynamic> exp, bool isDarkMode) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: isLightMode
+        color: isDarkMode
             ? Colors.grey[900]!.withOpacity(0.5)
             : Colors.grey[100]!.withOpacity(0.5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
         ),
       ),
       child: Column(
@@ -487,7 +487,7 @@ class _AboutSectionState extends State<AboutSection>
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: isLightMode ? Colors.white : Colors.black,
+                        color: isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     Text(
@@ -502,9 +502,7 @@ class _AboutSectionState extends State<AboutSection>
                       '${exp['location']} • ${exp['period']}',
                       style: TextStyle(
                         fontSize: 14,
-                        color: isLightMode
-                            ? Colors.grey[400]
-                            : Colors.grey[600],
+                        color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
                       ),
                     ),
                   ],
@@ -525,9 +523,7 @@ class _AboutSectionState extends State<AboutSection>
                       resp,
                       style: TextStyle(
                         fontSize: 14,
-                        color: isLightMode
-                            ? Colors.grey[300]
-                            : Colors.grey[700],
+                        color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
                       ),
                     ),
                   ),
@@ -540,7 +536,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildSkillsSection(bool isLightMode, bool isMobile) {
+  Widget _buildSkillsSection(bool isDarkMode, bool isMobile) {
     return Column(
       children: [
         Text(
@@ -548,19 +544,19 @@ class _AboutSectionState extends State<AboutSection>
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 32),
         Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: isLightMode
+            color: isDarkMode
                 ? Colors.grey[900]!.withOpacity(0.5)
                 : Colors.grey[100]!.withOpacity(0.5),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+              color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
             ),
           ),
           child: Column(
@@ -569,7 +565,7 @@ class _AboutSectionState extends State<AboutSection>
                 controller: _tabController,
                 isScrollable: isMobile,
                 labelColor: const Color(0xFF3B82F6),
-                unselectedLabelColor: isLightMode
+                unselectedLabelColor: isDarkMode
                     ? Colors.grey[400]
                     : Colors.grey[600],
                 indicatorColor: const Color(0xFF3B82F6),
@@ -594,7 +590,7 @@ class _AboutSectionState extends State<AboutSection>
                             child: SlideAnimation(
                               verticalOffset: 50.0,
                               child: FadeInAnimation(
-                                child: _buildSkillBar(skill, isLightMode),
+                                child: _buildSkillBar(skill, isDarkMode),
                               ),
                             ),
                           );
@@ -611,7 +607,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildSkillBar(SkillData skill, bool isLightMode) {
+  Widget _buildSkillBar(SkillData skill, bool isDarkMode) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -625,7 +621,7 @@ class _AboutSectionState extends State<AboutSection>
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
-                  color: isLightMode ? Colors.white : Colors.black,
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               Text(
@@ -649,7 +645,7 @@ class _AboutSectionState extends State<AboutSection>
                 return LinearProgressIndicator(
                   value: value,
                   minHeight: 8,
-                  backgroundColor: isLightMode
+                  backgroundColor: isDarkMode
                       ? Colors.grey[700]
                       : Colors.grey[300],
                   valueColor: const AlwaysStoppedAnimation<Color>(
@@ -664,7 +660,7 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildServicesSection(bool isLightMode, bool isMobile) {
+  Widget _buildServicesSection(bool isDarkMode, bool isMobile) {
     final services = [
       {
         'icon': '🌐',
@@ -695,7 +691,7 @@ class _AboutSectionState extends State<AboutSection>
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 32),
@@ -716,7 +712,7 @@ class _AboutSectionState extends State<AboutSection>
                 columnCount: isMobile ? 1 : 4,
                 child: ScaleAnimation(
                   child: FadeInAnimation(
-                    child: _buildServiceCard(services[index], isLightMode),
+                    child: _buildServiceCard(services[index], isDarkMode),
                   ),
                 ),
               );
@@ -727,16 +723,16 @@ class _AboutSectionState extends State<AboutSection>
     );
   }
 
-  Widget _buildServiceCard(Map<String, String> service, bool isLightMode) {
+  Widget _buildServiceCard(Map<String, String> service, bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: isLightMode
+        color: isDarkMode
             ? Colors.grey[900]!.withOpacity(0.5)
             : Colors.grey[100]!.withOpacity(0.5),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+          color: isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
         ),
       ),
       child: Column(
@@ -749,7 +745,7 @@ class _AboutSectionState extends State<AboutSection>
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: isLightMode ? Colors.white : Colors.black,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
             textAlign: TextAlign.center,
           ),
@@ -758,7 +754,7 @@ class _AboutSectionState extends State<AboutSection>
             service['description']!,
             style: TextStyle(
               fontSize: 14,
-              color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+              color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
             ),
             textAlign: TextAlign.center,
           ),

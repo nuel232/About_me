@@ -53,7 +53,7 @@ class _HeroSectionState extends State<HeroSection>
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return ResponsiveBuilder(
@@ -68,7 +68,7 @@ class _HeroSectionState extends State<HeroSection>
               // Waves Background
               Positioned.fill(
                 child: WavesBackground(
-                  lineColor: isLightMode
+                  lineColor: isDarkMode
                       ? const Color(0x33FFFFFF)
                       : const Color(0x1A000000),
                   backgroundColor: Colors.transparent,
@@ -83,8 +83,8 @@ class _HeroSectionState extends State<HeroSection>
                     vertical: 80,
                   ),
                   child: isMobile
-                      ? _buildMobileLayout(isLightMode)
-                      : _buildDesktopLayout(isLightMode, isTablet),
+                      ? _buildMobileLayout(isDarkMode)
+                      : _buildDesktopLayout(isDarkMode, isTablet),
                 ),
               ),
 
@@ -93,7 +93,7 @@ class _HeroSectionState extends State<HeroSection>
                 bottom: 40,
                 left: 0,
                 right: 0,
-                child: _buildScrollIndicator(isLightMode),
+                child: _buildScrollIndicator(isDarkMode),
               ),
             ],
           ),
@@ -102,7 +102,7 @@ class _HeroSectionState extends State<HeroSection>
     );
   }
 
-  Widget _buildDesktopLayout(bool isLightMode, bool isTablet) {
+  Widget _buildDesktopLayout(bool isDarkMode, bool isTablet) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -116,7 +116,7 @@ class _HeroSectionState extends State<HeroSection>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildTextContent(isLightMode, isTablet),
+                  _buildTextContent(isDarkMode, isTablet),
                   const SizedBox(height: 40),
                   _buildActionButtons(),
                 ],
@@ -140,7 +140,7 @@ class _HeroSectionState extends State<HeroSection>
     );
   }
 
-  Widget _buildMobileLayout(bool isLightMode) {
+  Widget _buildMobileLayout(bool isDarkMode) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -155,7 +155,7 @@ class _HeroSectionState extends State<HeroSection>
             position: _slideAnimation,
             child: Column(
               children: [
-                _buildTextContent(isLightMode, false, isMobile: true),
+                _buildTextContent(isDarkMode, false, isMobile: true),
                 const SizedBox(height: 32),
                 _buildActionButtons(),
               ],
@@ -167,7 +167,7 @@ class _HeroSectionState extends State<HeroSection>
   }
 
   Widget _buildTextContent(
-    bool isLightMode,
+    bool isDarkMode,
     bool isTablet, {
     bool isMobile = false,
   }) {
@@ -181,7 +181,7 @@ class _HeroSectionState extends State<HeroSection>
           style: TextStyle(
             fontSize: isMobile ? 28 : (isTablet ? 36 : 48),
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 8),
@@ -210,7 +210,7 @@ class _HeroSectionState extends State<HeroSection>
             style: TextStyle(
               fontSize: isMobile ? 16 : 18,
               height: 1.6,
-              color: isLightMode ? Colors.grey[300] : Colors.grey[700],
+              color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
             ),
             textAlign: isMobile ? TextAlign.center : TextAlign.left,
           ),
@@ -249,7 +249,7 @@ class _HeroSectionState extends State<HeroSection>
     );
   }
 
-  Widget _buildScrollIndicator(bool isLightMode) {
+  Widget _buildScrollIndicator(bool isDarkMode) {
     return FadeTransition(
       opacity: _fadeAnimation,
       child: Column(
@@ -258,7 +258,7 @@ class _HeroSectionState extends State<HeroSection>
             'Scroll Down',
             style: TextStyle(
               fontSize: 12,
-              color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+              color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
             ),
           ),
           const SizedBox(height: 8),
@@ -267,7 +267,7 @@ class _HeroSectionState extends State<HeroSection>
             height: 40,
             decoration: BoxDecoration(
               border: Border.all(
-                color: isLightMode ? Colors.grey[400]! : Colors.grey[600]!,
+                color: isDarkMode ? Colors.grey[400]! : Colors.grey[600]!,
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(12),
@@ -285,7 +285,7 @@ class _HeroSectionState extends State<HeroSection>
                     width: 6,
                     height: 6,
                     decoration: BoxDecoration(
-                      color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+                      color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
                       borderRadius: BorderRadius.circular(3),
                     ),
                   );
@@ -320,7 +320,7 @@ class _AnimatedButtonState extends State<_AnimatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -337,12 +337,12 @@ class _AnimatedButtonState extends State<_AnimatedButton> {
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
           decoration: BoxDecoration(
             color: widget.isPrimary
-                ? (isLightMode ? Colors.white : Colors.black)
+                ? (isDarkMode ? Colors.white : Colors.black)
                 : Colors.transparent,
             border: widget.isPrimary
                 ? null
                 : Border.all(
-                    color: isLightMode ? Colors.white : Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     width: 2,
                   ),
             borderRadius: BorderRadius.circular(30),
@@ -350,7 +350,7 @@ class _AnimatedButtonState extends State<_AnimatedButton> {
                 ? [
                     BoxShadow(
                       color: widget.isPrimary
-                          ? (isLightMode
+                          ? (isDarkMode
                                 ? Colors.white.withOpacity(0.3)
                                 : Colors.black.withOpacity(0.3))
                           : Colors.transparent,
@@ -368,8 +368,8 @@ class _AnimatedButtonState extends State<_AnimatedButton> {
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: widget.isPrimary
-                  ? (isLightMode ? Colors.black : Colors.white)
-                  : (isLightMode ? Colors.white : Colors.black),
+                  ? (isDarkMode ? Colors.black : Colors.white)
+                  : (isDarkMode ? Colors.white : Colors.black),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:about_me/widgets/testimonals_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:about_me/theme/theme_provider.dart';
 import '../widgets/custom_navbar.dart';
@@ -43,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    // Get the status bar height (includes notch/hole punch)
+    final topPadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
       body: Stack(
@@ -73,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Navbar overlay
+          // Navbar overlay - now positioned below status bar
           Positioned(
-            top: 0,
+            top: topPadding, // This pushes the navbar below the status bar
             left: 0,
             right: 0,
             child: CustomNavbar(

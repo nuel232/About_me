@@ -84,7 +84,7 @@ class _CustomNavbarState extends State<CustomNavbar>
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    final isLightMode = themeProvider.isLightMode;
+    final isDarkMode = themeProvider.isDarkMode;
 
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
@@ -98,7 +98,7 @@ class _CustomNavbarState extends State<CustomNavbar>
               duration: const Duration(milliseconds: 300),
               decoration: BoxDecoration(
                 color: _isScrolled
-                    ? (isLightMode
+                    ? (isDarkMode
                           ? Colors.grey[900]!.withOpacity(0.95)
                           : Colors.white.withOpacity(0.95))
                     : Colors.transparent,
@@ -130,7 +130,7 @@ class _CustomNavbarState extends State<CustomNavbar>
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: isLightMode ? Colors.white : Colors.black,
+                            color: isDarkMode ? Colors.white : Colors.black,
                           ),
                         ),
                       ),
@@ -191,7 +191,7 @@ class _CustomNavbarState extends State<CustomNavbar>
                             icon: AnimatedIcon(
                               icon: AnimatedIcons.menu_close,
                               progress: _menuAnimation,
-                              color: isLightMode ? Colors.white : Colors.black,
+                              color: isDarkMode ? Colors.white : Colors.black,
                             ),
                             onPressed: _toggleMobileMenu,
                           ),
@@ -209,7 +209,7 @@ class _CustomNavbarState extends State<CustomNavbar>
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
                 child: _isMobileMenuOpen
-                    ? _buildMobileMenu(isLightMode)
+                    ? _buildMobileMenu(isDarkMode)
                     : const SizedBox.shrink(),
               ),
           ],
@@ -218,11 +218,11 @@ class _CustomNavbarState extends State<CustomNavbar>
     );
   }
 
-  Widget _buildMobileMenu(bool isLightMode) {
+  Widget _buildMobileMenu(bool isDarkMode) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isLightMode ? Colors.grey[900] : Colors.white,
+        color: isDarkMode ? Colors.grey[900] : Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -294,7 +294,7 @@ class _NavItemState extends State<_NavItem> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -308,7 +308,7 @@ class _NavItemState extends State<_NavItem> {
             fontSize: 16,
             color: _isHovered
                 ? const Color(0xFF3B82F6)
-                : (isLightMode ? Colors.grey[300] : Colors.grey[700]),
+                : (isDarkMode ? Colors.grey[300] : Colors.grey[700]),
             fontWeight: _isHovered ? FontWeight.w600 : FontWeight.normal,
           ),
           child: Text(widget.label),
@@ -326,7 +326,7 @@ class _MobileNavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return InkWell(
       onTap: onTap,
@@ -338,7 +338,7 @@ class _MobileNavItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: isLightMode ? Colors.grey[300] : Colors.grey[700],
+            color: isDarkMode ? Colors.grey[300] : Colors.grey[700],
           ),
         ),
       ),
@@ -352,7 +352,7 @@ class _ThemeToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    final isLightMode = themeProvider.isLightMode;
+    final isDarkMode = themeProvider.isDarkMode;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -362,7 +362,7 @@ class _ThemeToggleButton extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: isLightMode ? Colors.grey[800] : Colors.grey[200],
+            color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
             borderRadius: BorderRadius.circular(8),
           ),
           child: AnimatedSwitcher(
@@ -374,9 +374,9 @@ class _ThemeToggleButton extends StatelessWidget {
               );
             },
             child: Icon(
-              isLightMode ? Icons.wb_sunny : Icons.nightlight_round,
-              key: ValueKey(isLightMode),
-              color: isLightMode ? Colors.yellow[700] : Colors.grey[700],
+              isDarkMode ? Icons.wb_sunny : Icons.nightlight_round,
+              key: ValueKey(isDarkMode),
+              color: isDarkMode ? Colors.yellow[700] : Colors.grey[700],
               size: 20,
             ),
           ),
@@ -408,7 +408,7 @@ class _SocialIconState extends State<_SocialIcon> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -424,7 +424,7 @@ class _SocialIconState extends State<_SocialIcon> {
             size: 20,
             color: _isHovered
                 ? const Color(0xFF3B82F6)
-                : (isLightMode ? Colors.grey[300] : Colors.grey[700]),
+                : (isDarkMode ? Colors.grey[300] : Colors.grey[700]),
           ),
         ),
       ),

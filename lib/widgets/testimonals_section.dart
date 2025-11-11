@@ -74,7 +74,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
@@ -86,12 +86,12 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
             horizontal: isMobile ? 16 : (isTablet ? 32 : 64),
             vertical: 80,
           ),
-          color: isLightMode ? Colors.black : Colors.white,
+          color: isDarkMode ? Colors.black : Colors.white,
           child: Stack(
             children: [
               Column(
                 children: [
-                  _buildHeader(isLightMode),
+                  _buildHeader(isDarkMode),
                   const SizedBox(height: 64),
                   AnimationLimiter(
                     child: GridView.builder(
@@ -112,7 +112,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                             child: FadeInAnimation(
                               child: TestimonialCard(
                                 testimonial: _testimonials[index],
-                                isLightMode: isLightMode,
+                                isDarkMode: isDarkMode,
                               ),
                             ),
                           ),
@@ -135,7 +135,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
               ),
 
               // Add Dialog
-              if (_showAddDialog) _buildAddDialog(isLightMode),
+              if (_showAddDialog) _buildAddDialog(isDarkMode),
             ],
           ),
         );
@@ -143,7 +143,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
     );
   }
 
-  Widget _buildHeader(bool isLightMode) {
+  Widget _buildHeader(bool isDarkMode) {
     return Column(
       children: [
         Text(
@@ -151,7 +151,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
-            color: isLightMode ? Colors.white : Colors.black,
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         const SizedBox(height: 16),
@@ -160,14 +160,14 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
-            color: isLightMode ? Colors.grey[400] : Colors.grey[600],
+            color: isDarkMode ? Colors.grey[400] : Colors.grey[600],
           ),
         ),
       ],
     );
   }
 
-  Widget _buildAddDialog(bool isLightMode) {
+  Widget _buildAddDialog(bool isDarkMode) {
     return Positioned.fill(
       child: GestureDetector(
         onTap: () => setState(() => _showAddDialog = false),
@@ -181,7 +181,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                 margin: const EdgeInsets.all(20),
                 padding: const EdgeInsets.all(32),
                 decoration: BoxDecoration(
-                  color: isLightMode ? Colors.grey[900] : Colors.white,
+                  color: isDarkMode ? Colors.grey[900] : Colors.white,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Form(
@@ -198,14 +198,14 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: isLightMode ? Colors.white : Colors.black,
+                              color: isDarkMode ? Colors.white : Colors.black,
                             ),
                           ),
                           IconButton(
                             icon: const Icon(Icons.close),
                             onPressed: () =>
                                 setState(() => _showAddDialog = false),
-                            color: isLightMode ? Colors.white : Colors.black,
+                            color: isDarkMode ? Colors.white : Colors.black,
                           ),
                         ],
                       ),
@@ -219,7 +219,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                                 labelText: 'Your Name',
                                 border: const OutlineInputBorder(),
                                 filled: true,
-                                fillColor: isLightMode
+                                fillColor: isDarkMode
                                     ? Colors.grey[800]
                                     : Colors.grey[100],
                               ),
@@ -235,7 +235,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                                 labelText: 'Your Role',
                                 border: const OutlineInputBorder(),
                                 filled: true,
-                                fillColor: isLightMode
+                                fillColor: isDarkMode
                                     ? Colors.grey[800]
                                     : Colors.grey[100],
                               ),
@@ -252,7 +252,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                           labelText: 'Company/Organization',
                           border: const OutlineInputBorder(),
                           filled: true,
-                          fillColor: isLightMode
+                          fillColor: isDarkMode
                               ? Colors.grey[800]
                               : Colors.grey[100],
                         ),
@@ -266,7 +266,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                           labelText: 'Your Testimonial',
                           border: const OutlineInputBorder(),
                           filled: true,
-                          fillColor: isLightMode
+                          fillColor: isDarkMode
                               ? Colors.grey[800]
                               : Colors.grey[100],
                         ),
@@ -301,12 +301,12 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
 
 class TestimonialCard extends StatefulWidget {
   final Testimonial testimonial;
-  final bool isLightMode;
+  final bool isDarkMode;
 
   const TestimonialCard({
     Key? key,
     required this.testimonial,
-    required this.isLightMode,
+    required this.isDarkMode,
   }) : super(key: key);
 
   @override
@@ -354,12 +354,12 @@ class _TestimonialCardState extends State<TestimonialCard>
         child: Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: widget.isLightMode
+            color: widget.isDarkMode
                 ? Colors.grey[900]!.withOpacity(0.5)
                 : Colors.grey[100],
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: widget.isLightMode ? Colors.grey[700]! : Colors.grey[300]!,
+              color: widget.isDarkMode ? Colors.grey[700]! : Colors.grey[300]!,
             ),
             boxShadow: [
               BoxShadow(
@@ -389,7 +389,7 @@ class _TestimonialCardState extends State<TestimonialCard>
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: widget.isLightMode
+                            color: widget.isDarkMode
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -398,7 +398,7 @@ class _TestimonialCardState extends State<TestimonialCard>
                           '${widget.testimonial.role} at ${widget.testimonial.company}',
                           style: TextStyle(
                             fontSize: 12,
-                            color: widget.isLightMode
+                            color: widget.isDarkMode
                                 ? Colors.grey[400]
                                 : Colors.grey[600],
                           ),
@@ -414,7 +414,7 @@ class _TestimonialCardState extends State<TestimonialCard>
                 style: TextStyle(
                   fontSize: 14,
                   height: 1.5,
-                  color: widget.isLightMode
+                  color: widget.isDarkMode
                       ? Colors.grey[300]
                       : Colors.grey[700],
                 ),

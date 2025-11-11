@@ -120,17 +120,27 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
                 child: Container(
                   width: widget.size,
                   height: widget.size,
-                  decoration: BoxDecoration(
-                    color: isLightMode ? Colors.grey[800] : Colors.grey[200],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(widget.size / 2),
-                    child: Image.asset(
-                      'assets/profile.jpg', // path to your image
-                      width: widget.size,
-                      height: widget.size,
-                      fit: BoxFit.cover,
-                    ),
+                  child: Image.asset(
+                    'assets/profile.jpg',
+                    width: widget.size,
+                    height: widget.size,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: widget.size,
+                        height: widget.size,
+                        color: isLightMode
+                            ? Colors.grey[800]
+                            : Colors.grey[200],
+                        child: Icon(
+                          Icons.person,
+                          size: widget.size * 0.5,
+                          color: isLightMode
+                              ? Colors.grey[600]
+                              : Colors.grey[400],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -154,8 +164,8 @@ class MorphingBorderPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 9
       ..color = isLightMode
-          ? Colors.white.withOpacity(0.3)
-          : Colors.black.withOpacity(0.1);
+          ? Colors.black.withOpacity(0.1)
+          : Colors.white.withOpacity(0.3);
 
     final path = _createMorphingPath(size, progress);
     canvas.drawPath(path, paint);
