@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:about_me/theme/theme_provider.dart';
 
 class ContactSection extends StatefulWidget {
-  const ContactSection({Key? key}) : super(key: key);
+  const ContactSection({super.key});
 
   @override
   State<ContactSection> createState() => _ContactSectionState();

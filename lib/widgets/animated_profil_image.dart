@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class AnimatedProfileImage extends StatefulWidget {
   final double size;
 
-  const AnimatedProfileImage({Key? key, this.size = 400}) : super(key: key);
+  const AnimatedProfileImage({super.key, this.size = 400});
 
   @override
   State<AnimatedProfileImage> createState() => _AnimatedProfileImageState();
@@ -117,7 +117,7 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
               ),
               child: ClipPath(
                 clipper: MorphingClipper(progress: _morphController.value),
-                child: Container(
+                child: SizedBox(
                   width: widget.size,
                   height: widget.size,
                   child: Image.asset(

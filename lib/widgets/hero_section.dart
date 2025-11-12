@@ -7,7 +7,7 @@ import 'package:about_me/theme/theme_provider.dart';
 import 'waves_background.dart';
 
 class HeroSection extends StatefulWidget {
-  const HeroSection({Key? key}) : super(key: key);
+  const HeroSection({super.key});
 
   @override
   State<HeroSection> createState() => _HeroSectionState();
@@ -61,7 +61,7 @@ class _HeroSectionState extends State<HeroSection>
         final isMobile = sizingInfo.isMobile;
         final isTablet = sizingInfo.isTablet;
 
-        return Container(
+        return SizedBox(
           height: screenHeight,
           child: Stack(
             children: [

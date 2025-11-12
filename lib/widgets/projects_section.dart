@@ -5,7 +5,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:about_me/theme/theme_provider.dart';
 
 class ProjectsSection extends StatelessWidget {
-  const ProjectsSection({Key? key}) : super(key: key);
+  const ProjectsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -205,13 +205,13 @@ class ProjectCard extends StatefulWidget {
   final bool isDarkMode;
 
   const ProjectCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.icon,
     this.gridHeight = 1,
     required this.isDarkMode,
-  }) : super(key: key);
+  });
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();

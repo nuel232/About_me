@@ -13,13 +13,13 @@ class CustomNavbar extends StatefulWidget {
   final ScrollController scrollController;
 
   const CustomNavbar({
-    Key? key,
+    super.key,
     required this.onHomePressed,
     required this.onProjectsPressed,
     required this.onAboutPressed,
     required this.onContactPressed,
     required this.scrollController,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomNavbar> createState() => _CustomNavbarState();

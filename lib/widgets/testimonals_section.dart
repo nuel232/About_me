@@ -5,7 +5,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:about_me/theme/theme_provider.dart';
 
 class TestimonialsSection extends StatefulWidget {
-  const TestimonialsSection({Key? key}) : super(key: key);
+  const TestimonialsSection({super.key});
 
   @override
   State<TestimonialsSection> createState() => _TestimonialsSectionState();
@@ -304,10 +304,10 @@ class TestimonialCard extends StatefulWidget {
   final bool isDarkMode;
 
   const TestimonialCard({
-    Key? key,
+    super.key,
     required this.testimonial,
     required this.isDarkMode,
-  }) : super(key: key);
+  });
 
   @override
   State<TestimonialCard> createState() => _TestimonialCardState();

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:about_me/theme/theme_provider.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+  const Footer({super.key});
 
   @override
   Widget build(BuildContext context) {

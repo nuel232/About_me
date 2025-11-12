@@ -43,9 +43,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isLightMode = Provider.of<ThemeProvider>(context).isLightMode;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.isDarkMode;
+
     // Get the status bar height (includes notch/hole punch)
     final topPadding = MediaQuery.of(context).padding.top;
+
+    // Set status bar style based on theme
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent, // Transparent status bar
+        statusBarIconBrightness: isDarkMode
+            ? Brightness
+                  .light // White icons for dark mode
+            : Brightness.dark, // Dark icons for light mode
+        statusBarBrightness: isDarkMode
+            ? Brightness
+                  .dark // For iOS
+            : Brightness.light, // For iOS
+      ),
+    );
 
     return Scaffold(
       body: Stack(
@@ -76,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Navbar overlay - now positioned below status bar
+          // Navbar overlay - positioned below status bar
           Positioned(
             top: topPadding, // This pushes the navbar below the status bar
             left: 0,

@@ -12,7 +12,7 @@ class WavesBackground extends StatefulWidget {
   final double yGap;
 
   const WavesBackground({
-    Key? key,
+    super.key,
     this.lineColor = const Color(0x33000000),
     this.backgroundColor = Colors.transparent,
     this.waveSpeedX = 0.0125,
@@ -21,7 +21,7 @@ class WavesBackground extends StatefulWidget {
     this.waveAmpY = 16.0,
     this.xGap = 10.0,
     this.yGap = 32.0,
-  }) : super(key: key);
+  });
 
   @override
   State<WavesBackground> createState() => _WavesBackgroundState();

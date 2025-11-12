@@ -12,10 +12,8 @@ ThemeData lightMode = ThemeData(
     primary: Color(0xFF3B82F6),
     secondary: Color(0xFF14B8A6),
     surface: Color(0xFFF9FAFB),
-    background: Colors.white,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onSurface: Color(0xFF374151),
-    onBackground: Colors.black,
   ),
 );
